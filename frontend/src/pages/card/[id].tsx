@@ -1,11 +1,40 @@
 import {TCard} from "@/types/card";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import {logAppDirError} from "next/dist/server/dev/log-app-dir-error";
+import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import {useRouter} from "next/router";
+import CardForm from "@/components/CardForm";
+import Card from "@/pages/card/index";
+import CardInfo from "@/components/CardInfo";
+import React, {useState} from "react";
+import {deleteRequest} from "@/hooks/fetcher";
+
 
 const CardPage = ({card}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+    const router = useRouter();
+    const [edit, setEdit] = useState(false)
+    const [cardData, setCardData] = useState(card)
+    const redirect = () => {
+        if(edit) {
+            setEdit(false)
+        } else router.push('/')
+    }
+
     return (
-        <div>
-            {card.name}
+        <div className={"container-main"}>
+            <div className={"container-button"}>
+                <div className={"group-button"}>
+                    <button className={"button button-small"} onClick={ redirect}>Назад</button>
+                    {edit ? null :<button className={"button button-large button-blue"} onClick={() =>setEdit(!edit)}>Редактировать</button>}
+                </div>
+                {edit ? null : <button className={"button button-small button-red"} onClick={redirect}>Удалить</button>}
+            </div>
+            {edit ?
+                <CardForm card={cardData} option="PUT" action={setEdit} data={setCardData}/>
+                :
+                <CardInfo card={cardData}/>
+            }
         </div>
     );
 };

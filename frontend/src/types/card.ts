@@ -4,5 +4,10 @@ export interface TCard {
     description: string,
     date: string,
     priority: string,
-    mark: string
+    mark: string[]
+}
+export interface TMark {
+    research: boolean,
+    design: boolean,
+    development: boolean
 }
