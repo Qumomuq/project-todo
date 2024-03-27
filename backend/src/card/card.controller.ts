@@ -1,8 +1,8 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
-import { CardService } from './card.service';
+import {Body, Controller, Delete, Get, Param, Post, Put, Query} from '@nestjs/common';
+import {CardService} from './card.service';
 import {CreateCardDto} from "./dto/create-card.dto";
 import {Card} from "./schema/card.schema";
-import {ObjectId} from "mongoose";
+import {ObjectId, SortOrder, SortValues} from "mongoose";
 
 @Controller('card')
 export class CardController {
@@ -14,8 +14,12 @@ export class CardController {
     }
 
     @Get()
-    getAll() {
-        return this.cardService.getAll();
+    getAll(@Query ('page') page: number,
+           @Query ( 'limit') limit: number,
+           @Query ( 'sort') sort: SortOrder,
+           @Query ( 'mark') mark: string,
+           @Query ( 'priority') priority: string)  {
+        return this.cardService.getAll(page, limit, sort, mark, priority);
     }
 
     @Get(':id')

@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { MarkDto} from "../dto/create-card.dto";
+import {Mark} from "./mark.schema";
 
 export type CardDocument = HydratedDocument<Card>;
 
@@ -17,8 +19,8 @@ export class Card {
     @Prop()
     priority: string;
 
-    @Prop()
-    mark: string;
+    @Prop({type: Array})
+    mark: string[];
 }
 
 export const CardSchema = SchemaFactory.createForClass(Card);

@@ -7,7 +7,7 @@ const  start = async () => {
   try {
 
     const PORT = process.env.PORT || 5000
-    const app = await  NestFactory.create(AppModule)
+    const app = await  NestFactory.create(AppModule,{cors: true})
     app.setGlobalPrefix('api');
     await app.listen(PORT, () => {
       console.log(`start server: ${PORT}`)});
