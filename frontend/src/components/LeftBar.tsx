@@ -1,14 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import DynamicRadioButtons from '../components/DynamicRadioButtons'
 import {priority, mark, sort} from "@/store/localstore";
 import DynamicCheckBox from "@/components/DynamicCheckBox";
 import {useUpdateEffect } from "@/hooks/useUpdateEffect"
 import {setCookie} from "@/hooks/setCookie";
-const LeftBar = ({stateFilter, filter}) => {
+import {TFilter} from "@/types/types";
 
-    const [selectedSort, setSelectedSort] = useState(stateFilter.sort);
-    const [selectedMark, setSelectedMark] = useState(stateFilter.mark);
-    const [selectedPriority, setSelectedPriority] = useState(stateFilter.priority);
+interface DynamicCheckBoxProps {
+    stateFilter: TFilter
+    filter: Dispatch<SetStateAction<TFilter>>
+}
+
+const LeftBar: React.FC<DynamicCheckBoxProps> = ({stateFilter, filter}) => {
+
+    const [selectedSort, setSelectedSort] = useState<string>(stateFilter.sort);
+    const [selectedMark, setSelectedMark] = useState<Array<string>>(stateFilter.mark);
+    const [selectedPriority, setSelectedPriority] = useState<Array<string>>(stateFilter.priority);
 
     useUpdateEffect(() => {
         filter({

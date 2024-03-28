@@ -1,4 +1,4 @@
-export const post = async (name, mark, priority, description, id = '', option:string) => {
+export const post = async (name: string, mark: string[], priority: string, description: string, id = '', option:string) => {
     const date = Date.now()
     const response: Response = await fetch(`http://localhost:5000/api/card/${id}`, {
         method: option,
@@ -7,7 +7,7 @@ export const post = async (name, mark, priority, description, id = '', option:st
     })
     return response
 }
-export const deleteRequest = async (id) => {
+export const deleteRequest = async (id: string) => {
     const response: Response = await fetch(`http://localhost:5000/api/card/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },

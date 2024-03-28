@@ -1,15 +1,9 @@
-import {TCard} from "@/types/card";
+import {TCard} from "@/types/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
-import {logAppDirError} from "next/dist/server/dev/log-app-dir-error";
-import styles from "@/styles/Home.module.css";
-import Link from "next/link";
 import {useRouter} from "next/router";
 import CardForm from "@/components/CardForm";
-import Card from "@/pages/card/index";
 import CardInfo from "@/components/CardInfo";
 import React, {useState} from "react";
-import {deleteRequest} from "@/hooks/fetcher";
-
 
 const CardPage = ({card}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const router = useRouter();
@@ -43,7 +37,6 @@ export default CardPage;
 
 export const getServerSideProps = (async ({params}) => {
     let res = await fetch(`http://localhost:5000/api/card/` + params?.id)
-    // console.log(res.status)
     if (res.status !== 200) {
         return {
             redirect: {

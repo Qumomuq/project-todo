@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {TCard} from "@/types/card";
+import React, {useState} from 'react';
+import {TCard} from "@/types/types";
 import {useRouter} from "next/router";
 import {post} from "@/hooks/fetcher";
 import {mark as markArray, priority as priorityArray} from "@/store/localstore";
-import {string} from "prop-types";
 import {useUpdateEffect} from "@/hooks/useUpdateEffect";
 
 interface CardItemProps {
@@ -13,9 +12,9 @@ interface CardItemProps {
     data:  React.Dispatch<React.SetStateAction<TCard>> | undefined ;
 }
 const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = null, data = null} ) => {
-    const [name, setName] = useState(card?.name || '')
-    const [priority, setPriority] = useState(card?.priority || 'low')
-    const [description, setDescription] = useState(card?.description || '')
+    const [name, setName] = useState<string>(card?.name || '')
+    const [priority, setPriority] = useState<string>(card?.priority || 'low')
+    const [description, setDescription] = useState<string>(card?.description || '')
     const [mark, setMark] = useState<string[]>(card?.mark || []);
     const [errors, setErrors] = useState<any>({
         name: undefined,
@@ -32,22 +31,20 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
     // Validate form
     const validateName = () => {
         if (!name) {
-            setErrors((prevState) => ({...prevState, name: 'Name is required.'}))
+            setErrors((prevState: any) => ({...prevState, name: 'Name is required.'}))
         } else if (name.length < 5) {
-            setErrors((prevState) => ({...prevState,  name: 'Name must be at least 5 characters.'}))
-        } else setErrors((prevState) => ({...prevState,  name: false}))
+            setErrors((prevState: any) => ({...prevState,  name: 'Name must be at least 5 characters.'}))
+        } else setErrors((prevState: any) => ({...prevState,  name: false}))
     }
     const validateDescription = () => {
         if (!description) {
-            setErrors((prevState) => ({...prevState,  description:  'Email is required.'}))
-        } else setErrors((prevState) => ({...prevState,  description: false }))
+            setErrors((prevState: any) => ({...prevState,  description:  'Email is required.'}))
+        } else setErrors((prevState: any) => ({...prevState,  description: false }))
     }
     const validateForm = () => {
         setErrors({...errors})
         validateDescription()
         validateName()
-
-
         return Object.keys(errors).every((val, i, arr) => errors[val] === false)
     };
     const editMark= (target) => {

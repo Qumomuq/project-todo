@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
+import {TLimit} from "@/types/types";
+interface DynamicRadioButtonsProps {
+    options: TLimit[],
+    stateFilter: string,
+    onSelect: Dispatch<SetStateAction<string>>,
+    name: string
+}
 
-const DynamicRadioButtons = ({ options,stateFilter, onSelect, name }) => {
+const DynamicRadioButtons: React.FC<DynamicRadioButtonsProps>  = ({ options ,stateFilter, onSelect, name }) => {
     const handleOptionChange = (event) => {
         const value = event.target.value;
         onSelect(value);

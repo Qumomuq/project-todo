@@ -1,12 +1,12 @@
 import Head from "next/head";
 import {Inter} from "next/font/google";
 import CardList from "@/components/CardList";
-import {TCard} from "@/types/card";
+import {TCard, TFilter} from "@/types/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import LeftBar from "@/components/LeftBar";
-import {mark, priority, limit} from "@/store/localstore";
+import {mark, priority, limit, url} from "@/store/localstore";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -37,12 +37,12 @@ export default function Home({cards, filterCookie}: InferGetServerSidePropsType<
 }
 
 export const getServerSideProps = (async (context) => {
-    const filterCookie = {
+    const filterCookie: TFilter = {
         sort: context.req.cookies['sort'] || '1',
         mark: context.req.cookies['mark']?.split(';') || mark,
         priority: context.req.cookies['priority']?.split(';') || priority,
     }
-    let res = await fetch(`http://localhost:5000/api/card?page=${context.query?.page}&limit=${limit}&sort=${filterCookie.sort}&mark=${filterCookie.mark}&priority=${filterCookie.priority}`)
+    let res = await fetch(`${url}/card?page=${context.query?.page}&limit=${limit}&sort=${filterCookie.sort}&mark=${filterCookie.mark}&priority=${filterCookie.priority}`)
     if (!res) {
         return {
             redirect: {

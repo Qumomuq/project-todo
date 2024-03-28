@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 export const useUpdateEffect = (effect, deps) => {
-    const [initialMount, setInitialMount] = useState(true);
+    const [initialMount, setInitialMount] = useState<boolean>(true);
 
     useEffect(() => {
         if (initialMount) {

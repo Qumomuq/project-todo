@@ -1,3 +1,5 @@
+import {Dispatch, SetStateAction} from "react";
+
 export interface TCard {
     _id: string,
     name: string,
@@ -10,4 +12,15 @@ export interface TMark {
     research: boolean,
     design: boolean,
     development: boolean
+}
+
+export interface TFilter {
+    sort: string,
+    mark: string[],
+    priority: string[]
+}
+
+export interface TLimit {
+    label: string,
+    value: string
 }

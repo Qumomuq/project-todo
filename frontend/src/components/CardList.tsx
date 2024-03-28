@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {TCard} from "@/types/card";
+import {TCard} from "@/types/types";
 import CardItem from "@/components/CardItem";
 import {useUpdateEffect} from "@/hooks/useUpdateEffect";
-import {limit} from "@/store/localstore"
+import {limit, url} from "@/store/localstore"
 interface CardListProps {
     cards: TCard[],
     filter: {
@@ -19,7 +19,7 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
     const [fetching, setFetching] = useState<boolean>(false)
     const [totalCount, setTotalCount] = useState(cards.length)
     const fetchData = async () => {
-        let res = await fetch(`http://localhost:5000/api/card?page=${currentPage}&limit=${limit}&sort=${filter.sort}&mark=${filter.mark}&priority=${filter.priority}`)
+        let res = await fetch(`${url}/card?page=${currentPage}&limit=${limit}&sort=${filter.sort}&mark=${filter.mark}&priority=${filter.priority}`)
         const cardsF: TCard[] = await res.json()
         setTotalCount(totalCount + cardsF.length)
         setCardData([...cardData, ...cardsF])

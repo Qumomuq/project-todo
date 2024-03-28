@@ -1,16 +1,20 @@
-import React from 'react';
-
-const DynamicCheckBox = ({ options, stateFilter, onSelect, name }) => {
+import React, {Dispatch, SetStateAction} from 'react';
+interface DynamicCheckBoxProps {
+    options: string[],
+    stateFilter: string[],
+    onSelect: Dispatch<SetStateAction<string[]>>,
+    name: string
+}
+const DynamicCheckBox: React.FC<DynamicCheckBoxProps> = ({ options, stateFilter, onSelect, name }) => {
     const editMark= (target) => {
         if (target.checked) {
             onSelect([...stateFilter, target.value])
         } else onSelect([...stateFilter].filter((value) => value !== target.value))
-
     }
     return (
         <div className={'container-checkbox'}>
             <span className={"label"}>{name}</span>
-            {options.map((option) => (
+            {options.map((option: string) => (
                 <div className="checkbox-wrapper" key={option}>
                     <input
                         className="input-checkbox"
