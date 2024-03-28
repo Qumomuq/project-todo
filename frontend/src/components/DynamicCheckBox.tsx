@@ -8,7 +8,7 @@ const DynamicCheckBox = ({ options, stateFilter, onSelect, name }) => {
 
     }
     return (
-        <div>
+        <div className={'container-checkbox'}>
             <span className={"label"}>{name}</span>
             {options.map((option) => (
                 <div className="checkbox-wrapper" key={option}>

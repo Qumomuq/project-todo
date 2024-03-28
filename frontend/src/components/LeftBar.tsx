@@ -23,11 +23,11 @@ const LeftBar = ({stateFilter, filter}) => {
 
     return (
         <>
-            <div className={"container-main-bar"}>
-                <div className={"container-bar"}>
+            <div className={"sidebar"}>
+                <div className={"group-sidebar"}>
                     <DynamicRadioButtons options={sort} stateFilter={selectedSort} onSelect={setSelectedSort} name={'Сортировка'}/>
                 </div>
-                <div className={"container-bar"}>
+                <div className={"group-sidebar"}>
                     <DynamicCheckBox options={mark} stateFilter={selectedMark} onSelect={setSelectedMark} name={'Отметки'}></DynamicCheckBox>
                     <DynamicCheckBox options={priority} stateFilter={selectedPriority} onSelect={setSelectedPriority} name={'Приоритет'}></DynamicCheckBox>
                 </div>

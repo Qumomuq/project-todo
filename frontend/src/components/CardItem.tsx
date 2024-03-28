@@ -13,8 +13,11 @@ const CardItem:React.FC<CardItemProps> = ({card}) => {
                 <span title={card.name} className={"name-item"}>{card.name}</span>
                 <span>Создано: {card.date}</span>
                 <span>Приоритет: {card.priority}</span>
-                <span>Отметки: {card.mark}</span>
-
+                {card.mark.length === 0 ?
+                    <span>Отметок нет</span>
+                    :
+                    <span>Отметки: {card.mark}</span>
+                }
             </Link>
         </>
     );

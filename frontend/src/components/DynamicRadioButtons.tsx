@@ -7,10 +7,11 @@ const DynamicRadioButtons = ({ options,stateFilter, onSelect, name }) => {
     };
 
     return (
-        <div>
+        <div className={'container-radio'}>
             <span className={"label"}>{name}</span>
+            <div className={'container-radio'}>
             {options.map((option) => (
-                <div key={option.value}>
+                <div className={'group-item'} key={option.value}>
                     <input
                         className={'radiobutton-custom'}
                         type="radio"
@@ -20,9 +21,10 @@ const DynamicRadioButtons = ({ options,stateFilter, onSelect, name }) => {
                         checked={stateFilter === option.value}
                         onChange={handleOptionChange}
                     />
-                    <label htmlFor={option.value}>{option.label}</label>
+                    <label className={'radio-name'} htmlFor={option.value}>{option.label}</label>
                 </div>
             ))}
+            </div>
         </div>
     );
 };

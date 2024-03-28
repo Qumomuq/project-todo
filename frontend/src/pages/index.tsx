@@ -6,8 +6,7 @@ import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import LeftBar from "@/components/LeftBar";
-import {mark, priority} from "@/store/localstore";
-import {cookies} from "next/headers";
+import {mark, priority, limit} from "@/store/localstore";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -15,7 +14,6 @@ export default function Home({cards, filterCookie}: InferGetServerSidePropsType<
 
     const router = useRouter()
     const [filter, setFilter] = useState(filterCookie)
-
 
     return (
         <>
@@ -44,8 +42,6 @@ export const getServerSideProps = (async (context) => {
         mark: context.req.cookies['mark']?.split(';') || mark,
         priority: context.req.cookies['priority']?.split(';') || priority,
     }
-
-    let limit = 5
     let res = await fetch(`http://localhost:5000/api/card?page=${context.query?.page}&limit=${limit}&sort=${filterCookie.sort}&mark=${filterCookie.mark}&priority=${filterCookie.priority}`)
     if (!res) {
         return {
@@ -55,7 +51,8 @@ export const getServerSideProps = (async (context) => {
             },
         }
     }
-    const cards = await res.json()
+    let cards: TCard[] = await res.json()
+
     return {props: {cards, filterCookie}}
 }) satisfies GetServerSideProps<{ cards: TCard[], filterCookie: any }>
 
