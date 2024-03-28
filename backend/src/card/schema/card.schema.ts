@@ -1,7 +1,5 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { MarkDto} from "../dto/create-card.dto";
-import {Mark} from "./mark.schema";
+import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import {HydratedDocument} from 'mongoose';
 
 export type CardDocument = HydratedDocument<Card>;
 

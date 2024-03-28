@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {LinkProps} from "next/link";
+import React from 'react';
 import {useRouter} from "next/router";
 import CardForm from "@/components/CardForm";
 

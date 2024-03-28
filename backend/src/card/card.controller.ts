@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, Param, Post, Put, Query} from '@nestjs/co
 import {CardService} from './card.service';
 import {CreateCardDto} from "./dto/create-card.dto";
 import {Card} from "./schema/card.schema";
-import {ObjectId, SortOrder, SortValues} from "mongoose";
+import {ObjectId, SortOrder} from "mongoose";
 
 @Controller('card')
 export class CardController {
@@ -36,8 +36,4 @@ export class CardController {
     update(@Body() dto: CreateCardDto, @Param('id') id: ObjectId) {
         return this.cardService.update(id, dto);
     }
-    // @Get()
-    // getCard(): string {
-    //     return this.appService.getHello();
-    // }
 }

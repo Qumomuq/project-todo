@@ -1,5 +1,4 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import {Prop, Schema} from '@nestjs/mongoose';
 
 // export type MarkDocument = HydratedDocument<Mark>;
 

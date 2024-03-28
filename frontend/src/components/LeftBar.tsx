@@ -1,8 +1,8 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 import DynamicRadioButtons from '../components/DynamicRadioButtons'
-import {priority, mark, sort} from "@/store/localstore";
+import {mark, priority, sort} from "@/store/localstore";
 import DynamicCheckBox from "@/components/DynamicCheckBox";
-import {useUpdateEffect } from "@/hooks/useUpdateEffect"
+import {useUpdateEffect} from "@/hooks/useUpdateEffect"
 import {setCookie} from "@/hooks/setCookie";
 import {TFilter} from "@/types/types";
 

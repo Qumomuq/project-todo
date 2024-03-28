@@ -3,10 +3,10 @@ import {Inter} from "next/font/google";
 import CardList from "@/components/CardList";
 import {TCard, TFilter} from "@/types/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useRouter} from "next/router";
 import LeftBar from "@/components/LeftBar";
-import {mark, priority, limit, url} from "@/store/localstore";
+import {limit, mark, priority, url} from "@/store/localstore";
 
 const inter = Inter({subsets: ["latin"]});
 

@@ -1,4 +1,5 @@
 import React, {Dispatch, SetStateAction} from 'react';
+
 interface DynamicCheckBoxProps {
     options: string[],
     stateFilter: string[],

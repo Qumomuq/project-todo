@@ -1,6 +1,6 @@
-import {Injectable, Query} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {Card} from "./schema/card.schema";
-import {Model, ObjectId, SortOrder, SortValues} from "mongoose";
+import {Model, ObjectId, SortOrder} from "mongoose";
 import {InjectModel} from "@nestjs/mongoose";
 import {CreateCardDto} from "./dto/create-card.dto";
 
@@ -42,8 +42,7 @@ export class CardService {
         } else {
             filters.priority = priority
         }
-        const card = this.cardModel.find(filters).sort({date: Number(sort) as SortOrder}).skip((page - 1) * limit).limit(limit);
-        return card
+        return this.cardModel.find(filters).sort({date: Number(sort) as SortOrder}).skip((page - 1) * limit).limit(limit);
     }
 
     async getOne(id: ObjectId): Promise<Card> {

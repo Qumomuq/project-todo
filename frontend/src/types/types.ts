@@ -1,5 +1,3 @@
-import {Dispatch, SetStateAction} from "react";
-
 export interface TCard {
     _id: string,
     name: string,

@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { CardModule } from "./card/card.module";
-import { MongooseModule } from "@nestjs/mongoose";
+import {Module} from '@nestjs/common';
+import {CardModule} from "./card/card.module";
+import {MongooseModule} from "@nestjs/mongoose";
 
 @Module({
   imports: [
