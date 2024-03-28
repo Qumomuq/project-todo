@@ -97,13 +97,11 @@ input, textarea, select {
 html,
 body {
       max-width: 100vw;
-      /*overflow-x: hidden;*/
 }
 
 body {
     background: var(--light-gray);
     font-family: "Poppins", sans-serif;
-    margin: 100px;
 }
 /*a {*/
 /*  color: inherit;*/
@@ -118,29 +116,44 @@ body {
 /*    color-scheme: dark;*/
 /*  }*/
 /*}*/
-
-.container-main, .container, .group, .container-item{
+.container-root {
+    padding: 100px;
+    font-family: "Poppins", sans-serif;
+    justify-content: space-between;
+    gap: 15px;
+}
+.container-root, .container-button {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.container-button {
+    gap: 15px;
+}
+.container-main, .container, .group{
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
 }
-.container-button {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
+.container-main {
+    gap: 15px;
 }
-.container-row {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    background: #4189e0;
+.container {
+    background: var(--white);
+    padding: 20px;
+    gap: 20px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
 }
+
+.group {
+    gap: 8px;
+}
+
 .sidebar {
     position: sticky;
     top: 100px;
@@ -149,7 +162,6 @@ body {
     flex-direction: column;
     min-width: 200px;
     height: 100%;
-    padding: 0 15px;
     gap: 15px;
 }
 .group-sidebar {
@@ -176,7 +188,7 @@ body {
 .group-item {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 100%;
@@ -185,50 +197,6 @@ body {
     width: 70px;
     padding: 0 5px;
 }
-.container-column {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background: #4189e0;
-}
-.group-button {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    gap: 10px;
-}
-.container-main {
-    gap: 15px;
-}
-
-.container, .container-item {
-    background: var(--white);
-    padding: 20px;
-    gap: 20px;
-    border: 1px solid var(--medium-gray);
-    border-radius: 5px;
-}
-
-.group {
-    gap: 8px;
-}
-
-/*.group-row {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    gap: 3px;*/
-/*    max-width: 300px;*/
-/*}*/
-/* {*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*}*/
 
 a, a:active {
     text-decoration: none;
@@ -237,7 +205,6 @@ a, a:active {
 
 .label {
     color: var(--gray);
-    /*padding: 5px 0;*/
     font-size: var(--small-font);
     font-weight: 500;
     text-transform: uppercase;
@@ -270,8 +237,6 @@ a, a:active {
     padding: 12px;
     height: 200px;
     resize: none;
-    /*max-height: 400px;*/
-    /*max-width: 100%;*/
 }
 .labelInput {
     position: relative;
@@ -285,13 +250,11 @@ a, a:active {
 }
 
 .button-blue {
-    /*height: 36px;*/
     background: var(--blue);
     color: var(--white);
 }
 
 .button-red {
-    /*height: 36px;*/
     background: var(--red);
     color: var(--white);
 }
@@ -305,17 +268,12 @@ a, a:active {
     width: 100px;
 }
 .button {
-    /*height: 36px;*/
-    /*width: 100px;*/
-    /*color: var(--gray);*/
-    /*background: var(--white);*/
     font-size: var(--small-font);
     border: 0;
     border-radius: 5px;
     -webkit-transition: 0.3s;
     transition: 0.3s;
 }
-/*.button-selector*/
 
 .button:hover, .checkbox-full:hover {
     opacity: 70%;
@@ -327,7 +285,6 @@ a, a:active {
     justify-content: center;
     align-items: center;
     background: var(--medium-gray);
-    /*gap: px;*/
     border-radius: 5px;
     transition: 0.3s;
 }
@@ -345,7 +302,7 @@ a, a:active {
 .group-checkbox {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    max-width: 300px;
     gap: 5px;
 }
 
@@ -364,7 +321,7 @@ a, a:active {
     text-overflow: ellipsis;
 }
 
-.container-item:hover > .name-item {
+.container:hover > .name-item {
     color: var(--light-blue);
 }
 
@@ -374,6 +331,14 @@ a, a:active {
     align-items: center;
     color: var(--black);
     font-size: var(--medium-font);
+    gap: 10px;
+}
+.small-text {
+    display: flex;
+    align-items: center;
+    color: var(--black);
+    font-size: var(--small-font);
+    gap: 5px;
 }
 
 /*css dynamic checked component*/
@@ -480,17 +445,32 @@ a, a:active {
     border-color: var(--light-blue);
     background-size: 100% 100%;
 }
-/*.containerr {*/
-/*    display: flex;*/
-/*}*/
-/*.contentr {*/
-/*    flex: 1;*/
-/*    height: 2500px;*/
 
-/*}*/
-/*.sidebarr {*/
-/*    flex: 0 0 200px;*/
-/*    position: -webkit-sticky;*/
-/*    position: sticky;*/
-/*    top: 0;*/
-/*}*/
+/*media*/
+@media screen and (max-width: 768px){
+    .container-root {
+        padding: 50px 50px;
+        flex-direction: column;
+    }
+    .sidebar {
+        top: 50px;
+    }
+    .group-sidebar {
+        flex-direction: row;
+    }
+    .container-button {
+        flex-direction: column;
+    }
+    .button {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 480px){
+    .container-root {
+        padding: 20px 10px;
+    }
+    .sidebar {
+        position: relative;
+        top: 0px;
+    }
+}

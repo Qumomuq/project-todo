@@ -23,12 +23,10 @@ export default function Home({cards, filterCookie}: InferGetServerSidePropsType<
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <div className={"container-button"}>
+            <div className={"container-root"}>
                 <LeftBar stateFilter={filter} filter={setFilter}/>
                 <div className={"container-main"}>
-                    <button className={"button button-large button-blue"} onClick={() => router.push('/card')}>Добавить
-                        задачу
-                    </button>
+                    <button className={"button button-large button-blue"} onClick={() => router.push('/card')}>Добавить задачу</button>
                     <CardList cards={cards} filter={filter}/>
                 </div>
             </div>

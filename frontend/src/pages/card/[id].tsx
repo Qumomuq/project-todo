@@ -16,9 +16,10 @@ const CardPage = ({card}: InferGetServerSidePropsType<typeof getServerSideProps>
     }
 
     return (
+        <div className={"container-root"}>
         <div className={"container-main"}>
             <div className={"container-button"}>
-                <div className={"group-button"}>
+                <div className={"container-button"}>
                     <button className={"button button-small"} onClick={ redirect}>Назад</button>
                     {edit ? null :<button className={"button button-large button-blue"} onClick={() =>setEdit(!edit)}>Редактировать</button>}
                 </div>
@@ -30,6 +31,7 @@ const CardPage = ({card}: InferGetServerSidePropsType<typeof getServerSideProps>
                 <CardInfo card={cardData}/>
             }
         </div>
+</div>
     );
 };
 

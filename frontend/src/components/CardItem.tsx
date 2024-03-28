@@ -60,7 +60,7 @@ const CardItem:React.FC<CardItemProps> = ({card}) => {
 
     return (
         <>
-            <Link className={"container-item"} href={'/card/' + card._id}>
+            <Link className={"container"} href={'/card/' + card._id}>
                 <span title={card.name} className={"name-item"}>{card.name}</span>
                 <span id={`date${card._id}`}>Создано: {formattedDate()}</span>
                 <span>Приоритет: {card.priority}</span>
