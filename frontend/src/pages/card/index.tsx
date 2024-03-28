@@ -6,9 +6,11 @@ import CardForm from "@/components/CardForm";
 const Index = ({state}: any) => {
     const router = useRouter()
     return (
-        <div className={"container-main"}>
-            <button className={"button button-small"} onClick={() => router.push('/')}>Назад</button>
-            <CardForm card={state} action={undefined} data={undefined} option={undefined}/>
+        <div className={"container-root"}>
+            <div className={"container-main"}>
+                <button className={"button button-small"} onClick={() => router.push('/')}>Назад</button>
+                <CardForm card={state} action={undefined} data={undefined} option={undefined}/>
+            </div>
         </div>
     );
 };
