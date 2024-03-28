@@ -1,5 +1,6 @@
 import React from 'react';
-import {TCard} from "@/types/card";
+import {TCard} from "@/types/types";
+import {fixDate} from "@/hooks/fixDate";
 
 interface CardItemProps {
     card: TCard ;
@@ -15,7 +16,7 @@ const CardInfo: React.FC<CardItemProps> = ({card}) => {
                         </div>
                         <div className={"group"}>
                             <span className={"label"}>Дата создания</span>
-                            <span className={"text"}>{card.date}</span>
+                            <span className={"text"}>{fixDate(card.date)}</span>
                         </div>
                         <div className={"group"}>
                             <span className={"label"}>Приоритет</span>
@@ -23,16 +24,16 @@ const CardInfo: React.FC<CardItemProps> = ({card}) => {
 
                         </div>
                         <div className={"group"}>
-                            {/*{card.mark.length}*/}
                             {card.mark && card.mark?.length !== 0 ?
                                 <>
                                     <span className={"label"}>Отметки</span>
                                     <div className={"group-checkbox"}>
 
-                                        <span className={"text"}>{card.mark.map((option: any) => (
-                                            <option key={option} value={option}>{option}</option>
-                                        ))}
-                                        </span>
+                                        <div className={"text"}>
+                                            {card.mark.map((option: any) => (
+                                            <span key={option}>{option}</span>
+                                            ))}
+                                        </div>
                                     </div>
                                 </> :
                                 <>
