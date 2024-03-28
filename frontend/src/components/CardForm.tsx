@@ -21,6 +21,7 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
         name: undefined,
         description: undefined
     });
+    const router = useRouter()
 
     useUpdateEffect(() => {
         validateName();
@@ -59,15 +60,14 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
     }
 
     const submit = (e) => {
-        console.log(validateForm())
-        // if(validateForm()) {
-            // post(name, mark, priority, description, card?._id, option).then(async (res) => {
-            //     const value = await res.json()
-            //     if(option === "POST") router.push(`/card/${value._id}`)
-            //     if(action) action(false)
-            //     if(data) data(value)
-            // })
-        // }
+        if(validateForm()) {
+            post(name, mark, priority, description, card?._id, option).then(async (res) => {
+                const value = await res.json()
+                if(option === "POST") router.push(`/card/${value._id}`)
+                if(action) action(false)
+                if(data) data(value)
+            })
+        }
     }
 
     return (
