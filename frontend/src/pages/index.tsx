@@ -24,9 +24,10 @@ export default function Home({cards, filterCookie}: InferGetServerSidePropsType<
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <div className={"container-root"}>
+                <button id={'button-phone'} className={"button button-large button-blue"} onClick={() => router.push('/card')}>Добавить задачу</button>
                 <LeftBar stateFilter={filter} filter={setFilter}/>
                 <div className={"container-main"}>
-                    <button className={"button button-large button-blue"} onClick={() => router.push('/card')}>Добавить задачу</button>
+                    <button id={'button-desktop'} className={"button button-large button-blue"} onClick={() => router.push('/card')}>Добавить задачу</button>
                     <CardList cards={cards} filter={filter}/>
                 </div>
             </div>
