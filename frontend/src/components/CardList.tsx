@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {TCard} from "@/types/card";
 import CardItem from "@/components/CardItem";
 import {useUpdateEffect} from "@/hooks/useUpdateEffect";
+import {limit} from "@/store/localstore"
 interface CardListProps {
-    cards: TCard[]
+    cards: TCard[],
     filter: {
         sort: string,
         mark: string[],
@@ -12,32 +13,23 @@ interface CardListProps {
 }
 
 
-const CardList: React.FC<CardListProps> = ({cards,filter}) => {
-    const [currentPage, setCurrentPage] = useState<number>(1)
+const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
+    const [currentPage, setCurrentPage] = useState<number>(2)
     const [cardData, setCardData] = useState<TCard[]>(cards)
     const [fetching, setFetching] = useState<boolean>(false)
-    const [permissionFetching, setPermissionFetching] = useState(true)
+    const [totalCount, setTotalCount] = useState(cards.length)
     const fetchData = async () => {
-        let limit = 5
-        console.log(filter)
         let res = await fetch(`http://localhost:5000/api/card?page=${currentPage}&limit=${limit}&sort=${filter.sort}&mark=${filter.mark}&priority=${filter.priority}`)
         const cardsF: TCard[] = await res.json()
-        // console.log(cardsF.length < limit)
-        // console.log(permissionFetching)
-        // if(cardsF.length < limit) {
-        //     console.log('fwefwafawfwafawf')
-        //     setPermissionFetching(false)
-        // }
+        setTotalCount(totalCount + cardsF.length)
         setCardData([...cardData, ...cardsF])
         setCurrentPage(prevState => prevState + 1)
         setFetching(false)
     }
 
     const scrollHandler = (e: any) => {
-        if(permissionFetching) {
-            if(e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < e.target.documentElement.scrollHeight /100 * 15) {
-                setFetching(true)
-            }
+        if( (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < e.target.documentElement.scrollHeight /100 * 15 ) && (totalCount % 5 === 0)) {
+            setFetching(true)
         }
     }
 
@@ -49,6 +41,7 @@ const CardList: React.FC<CardListProps> = ({cards,filter}) => {
     useUpdateEffect(() => {
         setCurrentPage(1)
         setCardData([])
+        setTotalCount(5)
         setFetching(true)
     }, [filter]);
     useEffect(() => {
@@ -64,7 +57,7 @@ const CardList: React.FC<CardListProps> = ({cards,filter}) => {
                 {cardData.length === 0 ?
                     <span>Нет записей</span>
                     :
-                    <div>
+                    <div className={"container-main"}>
                         {cardData.map((card: any) => (
                             <CardItem key={card._id} card={card}/>
                         ))}
