@@ -18,18 +18,20 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
     const [currentPage, setCurrentPage] = useState<number>(2)
     const [cardData, setCardData] = useState<TCard[]>(cards)
     const [fetching, setFetching] = useState<boolean>(false)
-    const [totalCount, setTotalCount] = useState<number>(cards.length)
+    const [permissionFetching, setPermissionFetching] = useState<boolean>(true)
     const fetchData = async () => {
         let res = await fetch(`${url}/card?page=${currentPage}&limit=${limit}&sort=${filter.sort}&mark=${filter.mark}&priority=${filter.priority}`)
-        const cardsF: TCard[] = await res.json()
-        setTotalCount(totalCount + cardsF.length)
-        setCardData([...cardData, ...cardsF])
+        const cardsNew: TCard[] = await res.json()
+        if(cardsNew.length < limit) {
+            setPermissionFetching(false)
+        }
+        setCardData([...cardData, ...cardsNew])
         setCurrentPage(prevState => prevState + 1)
         setFetching(false)
     }
 
     const scrollHandler = (e: any) => {
-        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < e.target.documentElement.scrollHeight / 100 * 15) && (totalCount % 5 === 0)) {
+        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < e.target.documentElement.scrollHeight / 100 * 15) && permissionFetching) {
             setFetching(true)
         }
     }
@@ -43,7 +45,7 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
     useUpdateEffect(() => {
         setCurrentPage(1)
         setCardData([])
-        setTotalCount(0)
+        setPermissionFetching(true)
         setFetching(true)
     }, [filter])
 
@@ -52,7 +54,7 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
         return function () {
             document.removeEventListener('scroll', scrollHandler)
         }
-    }, [totalCount])
+    }, [permissionFetching])
 
     return (
         <div className={"container-main"}>
