@@ -5,6 +5,7 @@ import CardForm from "@/components/CardForm";
 import CardInfo from "@/components/CardInfo";
 import React, {useState} from "react";
 import HeadComponent from "@/components/HeadComponent";
+import {deleteRequest} from "@/hooks/fetcher";
 
 const CardPage = ({card}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const router = useRouter();
@@ -26,7 +27,7 @@ const CardPage = ({card}: InferGetServerSidePropsType<typeof getServerSideProps>
                             <button className={"button button-small"} onClick={ redirect}>Назад</button>
                             {edit ? null :<button className={"button button-large button-blue"} onClick={() =>setEdit(!edit)}>Редактировать</button>}
                         </div>
-                        {edit ? null : <button className={"button button-small button-red"} onClick={redirect}>Удалить</button>}
+                        {edit ? null : <button className={"button button-small button-red"} onClick={() => {deleteRequest(card._id).then(r => redirect())}}>Удалить</button>}
                     </div>
                     {edit ?
                         <CardForm card={cardData} option="PUT" action={setEdit} data={setCardData}/>

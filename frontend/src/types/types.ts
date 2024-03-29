@@ -6,11 +6,6 @@ export interface TCard {
     priority: string,
     mark: string[]
 }
-export interface TMark {
-    research: boolean,
-    design: boolean,
-    development: boolean
-}
 
 export interface TFilter {
     sort: string,
