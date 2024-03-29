@@ -39,14 +39,6 @@ export default CardPage;
 
 export const getServerSideProps = (async ({params}) => {
     let res = await fetch(`http://localhost:5000/api/card/` + params?.id)
-    if (res.status !== 200) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
     const card: TCard = await res.json()
     return { props: { card } }
 }) satisfies GetServerSideProps<{ card: TCard }>

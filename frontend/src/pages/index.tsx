@@ -41,17 +41,8 @@ export const getServerSideProps = (async (context) => {
         mark: context.req.cookies['mark']?.split(';') || mark,
         priority: context.req.cookies['priority']?.split(';') || priority,
     }
-    let res = await fetch(`${url}/card?page=${context.query?.page}&limit=${limit}&sort=${filterCookie.sort}&mark=${filterCookie.mark}&priority=${filterCookie.priority}`)
-    if (!res) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-    let cards: TCard[] = await res.json()
-
+    const res = await fetch(`${url}/card?page=${context.query?.page}&limit=${limit}&sort=${filterCookie.sort}&mark=${filterCookie.mark}&priority=${filterCookie.priority}`)
+    const cards = await res.json()
     return {props: {cards, filterCookie}}
 }) satisfies GetServerSideProps<{ cards: TCard[], filterCookie: any }>
 

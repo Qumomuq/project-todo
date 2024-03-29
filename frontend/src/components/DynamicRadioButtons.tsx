@@ -9,7 +9,7 @@ interface DynamicRadioButtonsProps {
 }
 
 const DynamicRadioButtons: React.FC<DynamicRadioButtonsProps>  = ({ options ,stateFilter, onSelect, name }) => {
-    const handleOptionChange = (event) => {
+    const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         onSelect(value);
     };

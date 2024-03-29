@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export const useUpdateEffect = (effect, deps) => {
+export const useUpdateEffect = (effect: any, deps: any) => {
     const [initialMount, setInitialMount] = useState<boolean>(true);
 
     useEffect(() => {

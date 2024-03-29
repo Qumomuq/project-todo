@@ -7,7 +7,7 @@ interface DynamicCheckBoxProps {
     name: string
 }
 const DynamicCheckBox: React.FC<DynamicCheckBoxProps> = ({ options, stateFilter, onSelect, name }) => {
-    const editMark= (target) => {
+    const editMark= (target: EventTarget & HTMLInputElement) => {
         if (target.checked) {
             onSelect([...stateFilter, target.value])
         } else onSelect([...stateFilter].filter((value) => value !== target.value))
