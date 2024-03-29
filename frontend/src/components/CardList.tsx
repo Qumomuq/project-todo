@@ -18,7 +18,7 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
     const [currentPage, setCurrentPage] = useState<number>(2)
     const [cardData, setCardData] = useState<TCard[]>(cards)
     const [fetching, setFetching] = useState<boolean>(false)
-    const [totalCount, setTotalCount] = useState(cards.length)
+    const [totalCount, setTotalCount] = useState<number>(cards.length)
     const fetchData = async () => {
         let res = await fetch(`${url}/card?page=${currentPage}&limit=${limit}&sort=${filter.sort}&mark=${filter.mark}&priority=${filter.priority}`)
         const cardsF: TCard[] = await res.json()
@@ -29,7 +29,7 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
     }
 
     const scrollHandler = (e: any) => {
-        if( (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < e.target.documentElement.scrollHeight /100 * 15 ) && (totalCount % 5 === 0)) {
+        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < e.target.documentElement.scrollHeight / 100 * 15) && (totalCount % 5 === 0)) {
             setFetching(true)
         }
     }
@@ -39,18 +39,20 @@ const CardList: React.FC<CardListProps> = ({cards ,filter}) => {
             fetchData()
         }
     },[fetching])
+
     useUpdateEffect(() => {
         setCurrentPage(1)
         setCardData([])
-        setTotalCount(5)
+        setTotalCount(0)
         setFetching(true)
-    }, [filter]);
+    }, [filter])
+
     useEffect(() => {
         document.addEventListener('scroll', scrollHandler)
         return function () {
             document.removeEventListener('scroll', scrollHandler)
         }
-    }, [])
+    }, [totalCount])
 
     return (
         <div className={"container-main"}>
