@@ -32,11 +32,19 @@ export default function Home({cards, filterCookie}: InferGetServerSidePropsType<
 
 export const getServerSideProps = (async (context) => {
     const filterCookie: TFilter = {
-        sort: context.req.cookies['sort'] || '1',
+        sort: context.req.cookies['sort'] || '-1',
         mark: context.req.cookies['mark']?.split(';') || mark,
         priority: context.req.cookies['priority']?.split(';') || priority,
     }
     const res = await fetch(`${url}/card?page=${context.query?.page}&limit=${limit}&sort=${filterCookie.sort}&mark=${filterCookie.mark}&priority=${filterCookie.priority}`)
+    if(res.status >= 400) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
     const cards = await res.json()
     return {props: {cards, filterCookie}}
 }) satisfies GetServerSideProps<{ cards: TCard[], filterCookie: any }>
