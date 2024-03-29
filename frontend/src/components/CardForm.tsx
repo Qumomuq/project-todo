@@ -48,7 +48,6 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
         return Object.keys(errors).every((val, i, arr) => errors[val] === false)
     };
     const editMark= (target: EventTarget & HTMLInputElement ) => {
-
         if (target.checked) {
             setMark([...mark, target.value])
         } else {
@@ -57,13 +56,15 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
     }
 
     const submit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if(validateForm()) {
+        if (validateForm()) {
             post(name, mark, priority, description, card?._id, option).then(async (res) => {
                 const value = await res.json()
                 if(option === "POST") router.push(`/card/${value._id}`)
                 if(action) action(false)
                 if(data) data(value)
             })
+        } else if(name === card.name && mark === card.mark && priority === card.priority && description === card.description){
+            if(action) action(false)
         }
     }
 
