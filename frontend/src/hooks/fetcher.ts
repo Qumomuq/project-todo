@@ -1,5 +1,5 @@
 export const post = async (name: string, mark: string[], priority: string, description: string, id = '', option:string) => {
-    const date = Date.now()
+    const date = new Date()
     const response: Response = await fetch(`http://localhost:5000/api/card/${id}`, {
         method: option,
         headers: { 'Content-Type': 'application/json' },
