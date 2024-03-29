@@ -31,14 +31,14 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
     // Validate form
     const validateName = () => {
         if (!name) {
-            setErrors((prevState: any) => ({...prevState, name: 'Name is required.'}))
+            setErrors((prevState: any) => ({...prevState, name: 'Обязательное поле'}))
         } else if (name.length < 5) {
-            setErrors((prevState: any) => ({...prevState,  name: 'Name must be at least 5 characters.'}))
+            setErrors((prevState: any) => ({...prevState,  name: 'Минимум 5 символов'}))
         } else setErrors((prevState: any) => ({...prevState,  name: false}))
     }
     const validateDescription = () => {
         if (!description) {
-            setErrors((prevState: any) => ({...prevState,  description:  'Email is required.'}))
+            setErrors((prevState: any) => ({...prevState,  description:  'Обязательное поле'}))
         } else setErrors((prevState: any) => ({...prevState,  description: false }))
     }
     const validateForm = () => {
@@ -76,7 +76,7 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
                 <input name={"name"} defaultValue={name}
                        onChange={(e) => {setName(e.target.value)}}
                        type={"text"} className={"input inputName"}/>
-                {errors.name ? <span>{errors.name}</span> : null}
+                {errors.name ? <span className={"error-text"}>{errors.name}</span> : null}
             </div>
             <div className={"group"}>
                 <label className={"label"} htmlFor={"priority"}>Приоритет</label>
@@ -105,7 +105,7 @@ const CardForm: React.FC<CardItemProps> = ( {card, option = 'POST', action = nul
                     <textarea name={"description"} defaultValue={description} onChange={(e) => {
                         setDescription(e.target.value)
                     }} className={"input textareaDescription"}/>
-                    {errors.description ? <span>{errors.description}</span> : null}
+                    {errors.description ? <span className={"error-text"}>{errors.description}</span> : null}
 
                 </div>
                 <button type={"button"} onClick={(e) => {submit(e)}} className={"button button-large button-blue"}>Сохранить</button>

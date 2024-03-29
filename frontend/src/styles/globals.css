@@ -190,7 +190,7 @@ a, a:active {
 }
 
 .button:hover, .checkbox-full:hover {
-    opacity: 70%;
+    opacity: 60%;
 }
 
 .checkbox-full  {
@@ -254,7 +254,12 @@ a, a:active {
     font-size: var(--small-font);
     gap: 5px;
 }
-
+.error-text {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--red);
+}
 /*css dynamic checked component*/
 .container-checkbox {
     display: flex;
