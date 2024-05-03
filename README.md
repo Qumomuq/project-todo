@@ -22,3 +22,9 @@ npm install
 
 npm run dev
 ```
+
+## To do
+- [x] Add intersection observer
+- [ ] Fix typescript
+- [ ] Add docker
+- [ ] Deploying to Vercel
