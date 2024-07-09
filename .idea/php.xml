@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/runtime" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/polyfill-php83" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/composer" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/backend_PHP/vendor/symfony/polyfill-mbstring" />
+    </include_path>
+  </component>
+</project>
